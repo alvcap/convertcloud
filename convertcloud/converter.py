@@ -43,6 +43,8 @@ class Converter:
             self.points, self.fields = load.stl(path)
         elif extension == ".xyz":
             self.points, self.fields = load.xyz(path)
+        elif extension == ".txt":
+            self.points, self.fields = load.txt(path)
         elif extension == ".a3d":
             self.points, self.fields = load.a3d(path)
         else:
@@ -87,6 +89,8 @@ class Converter:
                             int(pt[3]), int(pt[4]), int(pt[5]), int(pt[6])).encode())
                 elif extension == ".a3d":
                     f.write("{},{},{}\n".format(pt[0], pt[1], pt[2]).replace(".", ",").encode())
+                elif extension == ".txt":
+                    f.write("{},{},{}\n".format(pt[0], pt[1], pt[2]).encode())
 
                 else:
                     f.write("{} {} {}\n".format(pt[0], pt[1], pt[2]).encode())
@@ -101,7 +105,7 @@ class Converter:
         elif extension == ".pcd":
             header = header_gen.pcd()
 
-        elif extension in [".xyz", ".a3d"]:
+        elif extension in [".xyz", ".a3d", ".txt"]:
             header = ''
 
         else:

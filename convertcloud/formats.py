@@ -291,6 +291,35 @@ class Load(object):
 
         return np.array(points), fields
 
+    def txt(self, path):
+        """
+        Parse a file in .txt format
+
+        Args:
+          path (string): Path to file to be loaded
+        Returns:
+          points (numpy array): Loaded points
+        """
+        points = []
+        fields = []
+
+        with open(path, 'rb') as f:
+            for line in f:
+                xyz = line.split(b", ")
+                if xyz[0] != b'nan':
+                    points.append([float(val) for val in xyz])
+                else:
+                    points.append(len(xyz)*[0.0])
+
+        for val in ["x", "y", "z"]:
+            field = Field(val)
+            field.size = 4
+            field.type = "float"
+            fields.append(field)
+
+
+        return np.array(points), fields
+
     def stl(self, path):
         """
         Parse a file in .stl format
@@ -386,7 +415,7 @@ class Header(object):
 
         header = 'ply\n' \
                + "format ascii 1.0\n" \
-               + "comment https://github.com/SintefRaufossManufacturing/convertcloud\n" \
+               + "comment https://github.com/SintefManufacturing/convertcloud\n" \
                + "element vertex {}\n".format(self._nr_pts) \
                + properties \
                + "end_header\n"

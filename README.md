@@ -8,6 +8,7 @@ Simple pointcloud format converter. Supported conversions:
 | .pcd |![green]|![green]|![green]|![red]|![red]|
 | .ply |![green]|![green]|![green]|![red]|![gray]|
 | .xyz |![green]|![green]|![green]|![gray]|![gray]|
+| .txt |![green]|![green]|![green]|![gray]|![gray]|
 | .zdf |![green]|![red]|![gray]|![gray]|![green]|
 | .a3d |![green]|![green]|![green]|![gray]|![gray]|
 | .stl |![green]|![red]|![green]|![red]|![gray]|
